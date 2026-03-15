@@ -3,7 +3,7 @@ const CONFIG = {
     OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY || 'YOUR_OPENROUTER_API_KEY_HERE',
     API_URL: 'https://openrouter.ai/api/v1/chat/completions',
     MODEL: 'mistralai/mistral-small-3.1-24b-instruct:free',
-    GITHUB_USERNAME: 'YOUR_USERNAME' // Replace with your GitHub username
+    GITHUB_USERNAME: 'prompt-flowd' // Replace with your GitHub username
 };
 
 // Default articles for first-time users
