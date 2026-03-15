@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptGenius - AI Prompt Generator | Create Professional Prompts Instantly</title>
+    <meta name="description" content="Generate professional, detailed AI prompts instantly using advanced Llama 3 AI. Perfect for content creators, developers, and AI enthusiasts.">
+    <meta name="keywords" content="AI Prompt Generator, Groq API, Llama 3, Prompt Engineering, AI Tools">
+    <meta name="author" content="PromptGenius">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom styles for animations -->
+    <style>
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-animate {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid #3b82f6;
+            white-space: pre-wrap;
+            animation: typing 3s steps(40, end);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        input::placeholder {
+            color: rgba(148, 163, 184, 0.6);
+        }
+
+        textarea::placeholder {
+            color: rgba(148, 163, 184, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 scroll-smooth">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full backdrop-blur-md dark-glass z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        ✨ PromptGenius
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="hover:text-blue-400 transition">Home</a>
+                    <a href="#generator" class="hover:text-blue-400 transition">Generator</a>
+                    <a href="#articles" class="hover:text-blue-400 transition">Articles</a>
+                    <button onclick="document.getElementById('admin-modal').showModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition text-sm">
+                        Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
+        <!-- Background gradient animation -->
+        <div class="absolute inset-0 gradient-animate opacity-10 -z-10"></div>
+        
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8 inline-block">
+                <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-blue-400">
+                    <span class="pulse-dot">●</span> Powered by Groq & Llama 3
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Transform Your Ideas Into
+                <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"> Perfect Prompts</span>
+            </h1>
+            
+            <p class="text-xl text-slate-400 mb-12 leading-relaxed">
+                Generate professional, detailed AI prompts instantly. Whether you're a content creator, developer, or AI enthusiast, PromptGenius helps you craft the perfect prompt in seconds.
+            </p>
+
+            <button onclick="document.getElementById('generator').scrollIntoView()" class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-105">
+                Start Generating →
+            </button>
+        </div>
+    </section>
+
+    <!-- Generator Section -->
+    <section id="generator" class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-950 to-slate-900">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">AI Prompt Generator</h2>
+                <p class="text-slate-400 text-lg">Enter your idea and let AI create a professional, detailed prompt</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="dark-glass rounded-xl p-8 hover-lift">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="inline-block w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-sm mr-3">1</span>
+                        Your Idea
+                    </h3>
+                    
+                    <textarea 
+                        id="user-input" 
+                        placeholder="Describe your idea for an AI prompt... e.g., 'I need a prompt to help with email copywriting'" 
+                        class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
+                    ></textarea>
+
+                    <div class="mt-6 space-y-3">
+                        <label class="text-sm text-slate-400 block">Tone & Style (Optional)</label>
+                        <select id="tone-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-blue-500">
+                            <option value="professional">Professional</option>
+                            <option value="casual">Casual & Friendly</option>
+                            <option value="technical">Technical & Detailed</option>
+                            <option value="creative">Creative & Imaginative</option>
+                        </select>
+                    </div>
+
+                    <button 
+                        id="generate-btn" 
+                        class="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-105 active:scale-95 flex items-center justify-center space-x-2"
+                    >
+                        <span>Generate Prompt</span>
+                        <span id="loading-spinner" class="hidden">⏳</span>
+                    </button>
+                </div>
+
+                <!-- Output Section -->
+                <div class="dark-glass rounded-xl p-8 hover-lift flex flex-col">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <span class="inline-block w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-sm mr-3">2</span>
+                        Generated Prompt
+                    </h3>
+                    
+                    <div id="prompt-output" class="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-4 mb-4 min-h-32 overflow-auto">
+                        <p class="text-slate-400 text-center py-8">Your generated prompt will appear here...</p>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button 
+                            id="copy-btn" 
+                            class="flex-1 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg font-semibold transition border border-slate-700 hidden"
+                            onclick="copyToClipboard()"
+                        >
+                            📋 Copy to Clipboard
+                        </button>
+                        <button 
+                            id="reset-btn" 
+                            class="flex-1 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg font-semibold transition border border-slate-700"
+                            onclick="resetGenerator()"
+                        >
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mt-16">
+                <div class="dark-glass rounded-xl p-6 hover-lift text-center">
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h4 class="font-semibold mb-2">Lightning Fast</h4>
+                    <p class="text-slate-400 text-sm">Generate prompts in seconds using Groq's ultra-fast API</p>
+                </div>
+                <div class="dark-glass rounded-xl p-6 hover-lift text-center">
+                    <div class="text-4xl mb-3">🎯</div>
+                    <h4 class="font-semibold mb-2">Precise</h4>
+                    <p class="text-slate-400 text-sm">Powered by Llama 3 for accurate, detailed prompts</p>
+                </div>
+                <div class="dark-glass rounded-xl p-6 hover-lift text-center">
+                    <div class="text-4xl mb-3">🔒</div>
+                    <h4 class="font-semibold mb-2">Secure</h4>
+                    <p class="text-slate-400 text-sm">Your data is processed securely through our API</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-2">Latest Articles</h2>
+                    <p class="text-slate-400">Tips, tricks, and insights about prompt engineering</p>
+                </div>
+            </div>
+
+            <div id="articles-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Articles will be loaded here by JavaScript -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="document.getElementById('admin-modal').showModal()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg font-semibold transition border border-slate-700">
+                    📝 Go to Admin Panel
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Modal -->
+    <dialog id="admin-modal" class="backdrop:bg-black/50 backdrop:backdrop-blur-sm">
+        <div class="bg-slate-950 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-auto dark-glass">
+            <form method="dialog" class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Admin Panel</h2>
+                    <button type="submit" class="text-slate-400 hover:text-slate-100">✕</button>
+                </div>
+
+                <!-- Articles Management -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4">Manage Articles</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Article Title</label>
+                            <input 
+                                id="article-title" 
+                                type="text" 
+                                placeholder="Enter article title" 
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-blue-500"
+                            >
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Article Description</label>
+                            <textarea 
+                                id="article-desc" 
+                                placeholder="Enter article description" 
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-blue-500 resize-none h-24"
+                            ></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Read More Link (Optional)</label>
+                            <input 
+                                id="article-link" 
+                                type="url" 
+                                placeholder="https://example.com/article" 
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-100 focus:outline-none focus:border-blue-500"
+                            >
+                        </div>
+
+                        <button 
+                            type="button"
+                            onclick="addArticle()" 
+                            class="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-semibold hover:opacity-90 transition"
+                        >
+                            ➕ Add Article
+                        </button>
+                    </div>
+
+                    <!-- Article List -->
+                    <div class="mt-6">
+                        <h4 class="font-semibold mb-3">Current Articles</h4>
+                        <div id="articles-list" class="space-y-2 max-h-48 overflow-auto">
+                            <!-- Articles list will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-4 border-t border-slate-800">
+                    <button type="submit" class="flex-1 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg font-semibold transition">
+                        Close
+                    </button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4">PromptGenius</h4>
+                    <p class="text-slate-400 text-sm">Create professional AI prompts instantly with our advanced generator.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Product</h5>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#generator" class="hover:text-blue-400 transition">Generator</a></li>
+                        <li><a href="#articles" class="hover:text-blue-400 transition">Articles</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Company</h5>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#about" class="hover:text-blue-400 transition">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
+                        <li><a href="#blog" class="hover:text-blue-400 transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Legal</h5>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#privacy" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+                        <li><a href="#terms" class="hover:text-blue-400 transition">Terms of Service</a></li>
+                        <li><a href="#cookies" class="hover:text-blue-400 transition">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-slate-400 text-sm">© 2026 PromptGenius. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-slate-400 hover:text-blue-400 transition">Twitter</a>
+                        <a href="#" class="text-slate-400 hover:text-blue-400 transition">GitHub</a>
+                        <a href="#" class="text-slate-400 hover:text-blue-400 transition">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 dark-glass rounded-lg px-6 py-4 max-w-sm hidden border border-slate-700">
+        <p id="toast-message"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

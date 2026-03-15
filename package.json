@@ -1,0 +1,38 @@
+{
+  "name": "promptgenius",
+  "version": "1.0.0",
+  "description": "A modern AI Prompt Generator using Groq API and Llama 3",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "dev": "http-server -p 8000 -c-1",
+    "start": "http-server -p 8000",
+    "build": "echo 'No build step needed - this is a static site'",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "groq",
+    "llama3",
+    "ai",
+    "prompt-generator",
+    "tailwind",
+    "javascript"
+  ],
+  "author": "PromptGenius",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/promptgenius"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
